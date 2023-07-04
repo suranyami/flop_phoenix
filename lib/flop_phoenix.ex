@@ -629,7 +629,7 @@ defmodule Flop.Phoenix do
     For each column to render, add one `<:col>` element.
 
     ```elixir
-    <:col :let={pet} label="Name" field={:name} col_style="width: 20%;">
+    <:col :let={pet} label="Name" field={:name} col_class="money has-text-right" col_style="width: 20%;">
       <%= pet.name %>
     </:col>
     ```
@@ -660,6 +660,14 @@ defmodule Flop.Phoenix do
       If set, a `<colgroup>` element is rendered and the value of the
       `col_style` assign is set as `style` attribute for the `<col>` element of
       the respective column. You can set the `width`, `background` and `border`
+      of a column this way.
+      """
+
+    attr :col_class, :string,
+      doc: """
+      If set, a `<colgroup>` element is rendered and the value of the
+      `col_class` assign is set as `class` attribute for the `<col>` element of
+      the respective column. You can set the css style
       of a column this way.
       """
 
