@@ -102,10 +102,22 @@ defmodule Flop.PhoenixTest do
       items={[%{name: "George", age: 8}]}
       meta={%Flop.Meta{flop: %Flop{}}}
     >
-      <:col :let={pet} label="Name" field={:name} col_style="width: 60%;">
+      <:col
+        :let={pet}
+        label="Name"
+        field={:name}
+        col_style="width: 60%;"
+        col_class="has-text-left"
+      >
         <%= pet.name %>
       </:col>
-      <:col :let={pet} label="Age" field={:age} col_style="width: 40%;">
+      <:col
+        :let={pet}
+        label="Age"
+        field={:age}
+        col_style="width: 40%;"
+        col_class="has-text-right"
+      >
         <%= pet.age %>
       </:col>
     </Flop.Phoenix.table>
@@ -166,10 +178,16 @@ defmodule Flop.PhoenixTest do
       items={[%{name: "George", id: 1}]}
       meta={%Flop.Meta{flop: %Flop{}}}
     >
-      <:col :let={pet} label="Name" field={:name} col_style="width: 60%;">
+      <:col
+        :let={pet}
+        label="Name"
+        field={:name}
+        col_style="width: 60%;"
+        col_class="has-text-left"
+      >
         <%= pet.name %>
       </:col>
-      <:action :let={pet} col_style="width: 40%;">
+      <:action :let={pet} col_style="width: 40%;" col_class="has-text-left">
         <.link navigate={"/show/pet/#{pet.name}"}>
           Show Pet
         </.link>
@@ -829,16 +847,15 @@ defmodule Flop.PhoenixTest do
         )
 
       expected_query = fn page ->
-        default_query =
-          %{
-            "filters[0][field]" => "fur_length",
-            "filters[0][op]" => ">=",
-            "filters[0][value]" => "5",
-            "filters[1][field]" => "curiosity",
-            "filters[1][op]" => "in",
-            "filters[1][value][]" => "somewhat",
-            "page_size" => "10"
-          }
+        default_query = %{
+          "filters[0][field]" => "fur_length",
+          "filters[0][op]" => ">=",
+          "filters[0][value]" => "5",
+          "filters[1][field]" => "curiosity",
+          "filters[1][op]" => "in",
+          "filters[1][value][]" => "somewhat",
+          "page_size" => "10"
+        }
 
         if page == 1,
           do: default_query,
@@ -2084,8 +2101,12 @@ defmodule Flop.PhoenixTest do
                 [
                   {"colgroup", _,
                    [
-                     {"col", [{"style", "width: 60%;"}], _},
-                     {"col", [{"style", "width: 40%;"}], _}
+                     {"col",
+                      [{"style", "width: 60%;"}, {"class", "has-text-left"}],
+                      _},
+                     {"col",
+                      [{"style", "width: 40%;"}, {"class", "has-text-right"}],
+                      _}
                    ]},
                   {"thead", _, _},
                   {"tbody", _, _}
@@ -2109,8 +2130,11 @@ defmodule Flop.PhoenixTest do
                 [
                   {"colgroup", _,
                    [
-                     {"col", [{"style", "width: 60%;"}], _},
-                     {"col", [{"style", "width: 40%;"}], _}
+                     {"col",
+                      [{"style", "width: 60%;"}, {"class", "has-text-left"}],
+                      _},
+                     {"col",
+                      [{"style", "width: 40%;"}, {"class", "has-text-left"}], _}
                    ]},
                   {"thead", _, _},
                   {"tbody", _, _}

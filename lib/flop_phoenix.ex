@@ -706,6 +706,14 @@ defmodule Flop.Phoenix do
       of a column this way.
       """
 
+    attr :col_class, :string,
+      doc: """
+      If set, a `<colgroup>` element is rendered and the value of the
+      `col_class` assign is set as `class` attribute for the `<col>` element of
+      the respective column. You can set the css style
+      of a column this way.
+      """
+
     attr :attrs, :list,
       doc: """
       Any additional attributes to pass to the `<td>`.

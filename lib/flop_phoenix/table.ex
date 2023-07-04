@@ -131,15 +131,24 @@ defmodule Flop.Phoenix.Table do
     <table {@opts[:table_attrs]}>
       <caption :if={@caption}><%= @caption %></caption>
       <colgroup :if={
-        Enum.any?(@col, & &1[:col_style])
-        or Enum.any?(@action, & &1[:col_style])
-        or Enum.any?((@col, & &1[:col_class])
+        Enum.any?(@col, & &1[:col_style]) or
+          Enum.any?(@action, & &1[:col_style]) or
+          Enum.any?(@col, & &1[:col_class]) or
+          Enum.any?(@action, & &1[:col_class])
       }>
         <%= for col <- @col do %>
-          <col :if={show_column?(col)} style={col[:col_style]} class={col[:col_class]} />
+          <col
+            :if={show_column?(col)}
+            style={col[:col_style]}
+            class={col[:col_class]}
+          />
         <% end %>
         <%= for action <- @action do %>
-          <col :if={show_column?(action)} style={action[:col_style]} class={col[:col_class]} />
+          <col
+            :if={show_column?(action)}
+            style={action[:col_style]}
+            class={action[:col_class]}
+          />
         <% end %>
       </colgroup>
       <thead>
